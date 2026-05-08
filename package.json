@@ -1,0 +1,36 @@
+{
+  "name": "himum",
+  "version": "1.0.0",
+  "description": "Real-time voice conversation: Deepgram Flux (STT) → Groq Llama-4 (LLM) → ElevenLabs Turbo v2.5 (TTS)",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "bash -c 'tsx src/index.ts 2> >(grep --line-buffered -v \"buffer underflow\" >&2)'",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@deepgram/sdk": "^5.1.0",
+    "@elevenlabs/elevenlabs-js": "^2.45.0",
+    "@ericedouard/vad-node-realtime": "^0.2.0",
+    "dotenv": "^16.4.5",
+    "groq-sdk": "^0.9.0",
+    "onnxruntime-node": "^1.18.0",
+    "speaker": "0.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.15.6",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "onnxruntime-node",
+      "speaker"
+    ]
+  }
+}
