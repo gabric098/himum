@@ -50,7 +50,7 @@ const ELEVENLABS_API_KEY = requireEnv("ELEVENLABS_API_KEY");
 const VOICE_ID   = process.env.ELEVENLABS_VOICE_ID ?? "21m00Tcm4TlvDq8ikWAM";
 const GROQ_MODEL = process.env.GROQ_MODEL         ?? "meta-llama/llama-4-maverick-17b-128e-instruct";
 // Priority: prompts/system_prompt.txt (edited locally) → SYSTEM_PROMPT env var → built-in default.
-const SYSTEM_PROMPT_FILE = join(process.cwd(), "prompts", "system_prompt.txt");
+const SYSTEM_PROMPT_FILE = join(process.cwd(), "prompts", "system_prompt_demo.txt");
 const SYSTEM_PROMPT_DEFAULT = "You are a helpful, concise voice assistant. Keep answers brief and natural for spoken conversation. Avoid markdown and lists — just speak plainly.";
 let systemPromptSource: string;
 let SYSTEM_PROMPT: string;
@@ -279,7 +279,7 @@ async function main(): Promise<void> {
     encoding:      ListenV2Encoding.Mulaw,
     sample_rate:   8000,
     Authorization: `Token ${DEEPGRAM_API_KEY}`,
-    queryParams:   { language_hint: "it", mip_opt_out: "true" },
+    queryParams:   { language_hint: "en", mip_opt_out: "false" },
   });
 
   socket.on("open", () => console.log("[Flux]       connected\n"));
